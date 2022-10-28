@@ -1,0 +1,50 @@
+CREATE TABLE userEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    firstName TEXT NOT NULL,
+    lastName TEXT NOT NULL,
+    email TEXT NOT NULL,
+    anonymous INTEGER NOT NULL,
+    created INTEGER NOT NULL
+);
+
+getCurrentUser:
+SELECT *
+FROM userEntity
+WHERE anonymous = 0 LIMIT 1;
+
+saveUser:
+INSERT OR REPLACE
+INTO userEntity(id, firstName, lastName, email, anonymous, created)
+VALUES (?,?,?,?,?,?);
+
+logout:
+DELETE FROM userEntity;
+
+CREATE TABLE workoutEntity(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    idUser INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    selected INTEGER NOT NULL,
+    FOREIGN KEY (idUser) REFERENCES userEntity(id) ON DELETE CASCADE
+);
+
+saveWorkout:
+INSERT OR REPLACE
+INTO workoutEntity(id, idUser,name, selected)
+VALUES (?,?,?, ?);
+
+getWorkouts:
+SELECT *
+FROM workoutEntity;
+
+getWorkoutSelected:
+SELECT *
+FROM workoutEntity
+WHERE selected = 0 LIMIT 1;
+
+
+
+
+
+
+

@@ -43,6 +43,7 @@ kotlin {
             dependencies{
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+
             }
         }
         val androidTest by getting
@@ -68,6 +69,13 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
+    }
+}
+
+sqldelight {
+    database("GymBroDatabase") {
+        packageName = "com.godbless.gymbro.database"
+        sourceFolders =listOf("sqldelight")
     }
 }
 
