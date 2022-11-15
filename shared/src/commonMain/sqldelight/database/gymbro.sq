@@ -35,7 +35,8 @@ VALUES (?,?,?, ?);
 
 getWorkouts:
 SELECT *
-FROM workoutEntity;
+FROM workoutEntity
+WHERE idUser = ?;
 
 getWorkoutSelected:
 SELECT *

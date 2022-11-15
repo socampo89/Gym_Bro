@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
-    val userUseCases: UserUseCases,
+    private val userUseCases: UserUseCases,
     private val savedStateHandle: SavedStateHandle) : ViewModel() {
 
     companion object{
